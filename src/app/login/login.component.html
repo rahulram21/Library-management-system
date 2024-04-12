@@ -1,0 +1,33 @@
+<div class="topcontainer">
+    <div class="main">  	
+        <input type="checkbox" id="chk" aria-hidden="true">
+    <div class="signup">
+        <form>
+            <label for="chk" aria-hidden="true">Sign up</label>
+            <input type="text" name="txt" placeholder="User name" required="" [(ngModel)]="signUpObj.username">
+            <input type="email" name="email" placeholder="Email" required="" [(ngModel)]="signUpObj.email">
+            <div class="radio-group">
+                <label class="userLabel">
+                    <input type="radio" name="userType" value="admin" [value]="true" (change)="signUpObj.isAdmin = true">Admin
+                </label>
+                <label class="userLabel">
+                    <input type="radio" name="userType" value="user" [value]="false" (change)="signUpObj.isAdmin = false">User
+                </label>
+            </div>
+            <input type="password" name="pswd" placeholder="Password" required="" [(ngModel)]="signUpObj.password">
+            <button (click)="onSignUp()">Sign up</button>
+        </form>
+    </div>
+    
+    <div class="login">
+        <form>
+            <label for="chk" aria-hidden="true">Login</label>
+            <input type="email" name="email" placeholder="Email" required="" [(ngModel)]="loginObj.email">
+            <input type="password" name="pswd" placeholder="Password" required="" [(ngModel)]="loginObj.password">
+            <button (click)="onLogin()">Login</button>
+        </form>
+    </div>
+    </div>
+    </div>
+    
+    
