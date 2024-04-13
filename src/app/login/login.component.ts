@@ -12,7 +12,8 @@ export class LoginComponent {
     username:'',
     email:'',
     password:'',
-    isAdmin: false
+    isAdmin: false,
+    permittedBooks: 3
   };
   loginObj:any={
     email:'',
@@ -31,11 +32,13 @@ export class LoginComponent {
   onSignUp(){
     this.signUpUsers.push(this.signUpObj);
     localStorage.setItem('signUpUsers', JSON.stringify(this.signUpUsers));
+    //default number of books allowed = 3
     this.signUpObj={
       username:'',
       email:'',
       password:'',
-      isAdmin: false
+      isAdmin: false,
+      permittedBooks : 3
     };
   }
   onLogin(){
@@ -48,7 +51,7 @@ export class LoginComponent {
         this.router.navigate(['userPage'])
       }
     }else{
-      alert("User doesn not exist");
+      alert("User does not exist");
     }
   }
 }

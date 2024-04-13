@@ -1,0 +1,27 @@
+<section class="users">
+        <h2>Users</h2>
+        <div class="user-container">
+          <div class="user-card" *ngFor="let user of users; let i = index"> 
+            <div class="user-info">
+              <h3>{{ user.username }}</h3>
+              <p>E-mail : {{ user.email }}</p>
+              <p>Permitted No. of books : {{ user.permittedBooks }}</p>
+              <!-- <p>Borrowed Books: {{ user.borrowedBooks.length }}</p> -->
+              <button class="edit-btn" (click)="unHideEdit(i)">Edit</button>
+              <button class="delete-btn" (click)="deleteUser(user)">Delete User</button>
+              <section [hidden]="editIsHidden[i] !== false"> <!---Index to tack edit visibility-->
+                <input type="text" name="txt" placeholder="Edit Username" required="" [(ngModel)]="editedUsers[i].username">
+                <input type="email" name="email" placeholder="Edit User Email" required="" [(ngModel)]="editedUsers[i].email">
+                <input type="number" name="permittedBooks" placeholder="Permitted number of books" required="" [(ngModel)]="editedUsers[i].permittedBooks">
+                <button (click)="editUser(user, i)">Done</button>
+              </section>
+            </div>
+            <div class="borrowed-books">
+              <h4>Borrowed Books</h4>
+              <!-- <ul>
+                <li *ngFor="let book of user.borrowedBooks">{{ book.title }}</li>
+              </ul> -->
+            </div>
+          </div>
+        </div>
+    </section>

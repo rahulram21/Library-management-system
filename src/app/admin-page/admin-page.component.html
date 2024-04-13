@@ -1,1 +1,59 @@
-<p>admin-page works!</p>
+<div class="container">
+    <header>
+      <nav>
+        <ul>
+          <li><button (click)="showSection('books')">Books</button></li>
+          <li><button (click)="showSection('users')">Users</button></li>
+          <li><button (click)="showSection('profile')">Profile</button></li>
+        </ul>
+      </nav>
+    </header>
+  
+    <main>
+      <section class="books" [hidden]="currentSection !== 'books'">
+        <h2>Books</h2>
+        <div class="book-container">
+          <div class="book-card" *ngFor="let book of books; let i=index">
+            <div class="book-cover">
+              <img [src]="book.imageUrl" alt="{{ book.title }} cover">
+            </div>
+            <div class="book-info">
+              <h3>{{ book.title }}</h3>
+              <p>by {{ book.author }}</p>
+              <div class="book-actions">
+                <button class="edit-btn" (click)="unHideBookEdit(i)">Edit Book details</button>
+                <button class="delete-btn" (click)="deleteBook(book)">Delete</button>
+                <section [hidden]="editBookHidden[i] !== false">
+                  <input type="text" name="title" placeholder="Edit Book Title" required="" [(ngModel)]="editedBooks[i].title">
+                  <input type="email" name="author" placeholder="Edit Author" required="" [(ngModel)]="editedBooks[i].author">
+                  <input type="url" name="imageUrl" placeholder="Edit User Email" required="" [(ngModel)]="editedBooks[i].imageUrl">
+                  <button (click)="editBook(book, i)">Done</button>
+                </section>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+  
+      <app-admin-users [hidden]="currentSection !== 'users'"></app-admin-users>
+  
+      <section class="profile" [hidden]="currentSection !== 'profile'">
+        <h2>Profile</h2>
+        <form>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" value="Admin User">
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" value="admin@example.com">
+          </div>
+          <button type="submit" class="update-btn">Update Profile</button>
+        </form>
+      </section>
+    </main>
+  
+    <footer>
+      <p>&copy; 2023 Library Application. All rights reserved.</p>
+    </footer>
+  </div>

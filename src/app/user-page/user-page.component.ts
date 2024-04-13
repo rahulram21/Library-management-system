@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { BookService } from '../book.service';
+import { Observable } from 'rxjs';
+import { BookFetchService } from '../book-fetch.service';
 
 @Component({
   selector: 'app-user-page',
@@ -6,8 +9,21 @@ import { Component } from '@angular/core';
   styleUrl: './user-page.component.css'
 })
 export class UserPageComponent {
-  currentSection: string = 'booksAvailable';
 
+  books: any[] = []
+  constructor(private bookService:BookService){}
+
+  ngOnInit(): void{
+      this.getBooks();
+  }
+
+  getBooks(){
+    this.books = this.bookService.getFetchedBooks();
+  }
+
+  
+  //hide sections
+  currentSection: string = 'booksAvailable';
   showSection(section:string){
     this.currentSection = section;
   }
